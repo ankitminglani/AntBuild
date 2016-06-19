@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="runtime" name="AntBuildDemo">
+
+	<property name="src.dir" value="./src"></property>
+	<property name="compile.dir" value ="./staging"></property>
+	<property name="dist.dir" value="./dist"></property>
+	<property name="javadoc.dir" value="./JavaDocs"></property>
+	
+	<target name="runtime" depends="cleanClasses,compile,jarcreation">
+		<java classname="com.test.DummyAntBuild">
+			<classpath path="${compile.dir}"></classpath>
+		</java>
+	</target>
+
+	<target name="compile">
+		<mkdir dir="${compile.dir}"></mkdir>
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${compile.dir}" />
+	</target>
+
+	<target name="jarcreation">
+		<mkdir dir="${dist.dir}"></mkdir>
+		
+		<jar destfile="${dist.dir}/app.jar" basedir="${compile.dir}"></jar>
+	</target>
+
+	<target name="cleanClasses">
+		<delete dir="${compile.dir}"></delete>
+		<delete dir="${dist.dir}"></delete>
+	</target>
+
+	<!--  <target name="javaDocCreate">
+	<javadoc 
+           sourcepath="${src.dir}"
+           destdir="${javadoc.dir}"
+           author="true"
+           version="true"
+           use="true"
+           windowtitle="Test API">
+    <doctitle><![CDATA[<h1>Test</h1>]]></doctitle>
+    <bottom><![CDATA[<i>Copyright &#169; 2000 Dummy Corp. All Rights Reserved.</i>]]></bottom>
+    <tag name="todo" scope="all" description="To do:"/>
+    <link offline="true" href="http://docs.oracle.com/javase/7/docs/api/" packagelistLoc="C:\tmp"/>
+    <link href="http://docs.oracle.com/javase/7/docs/api/"/>
+  </javadoc>
+	</target>-->
+
+</project>
