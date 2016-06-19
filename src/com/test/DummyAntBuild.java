@@ -9,6 +9,8 @@ public class DummyAntBuild {
 		System.out.println("Hellp Ant again");
 		DummyDifferentPackageAntBuild d= new DummyDifferentPackageAntBuild();
 		d.helloDummy();
+		HelloAntAgain d1 = new HelloAntAgain();
+		d1.helloAnt();
 		
 	}
 
